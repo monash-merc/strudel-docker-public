@@ -38,7 +38,7 @@ RUN cd ~/massive-guacamole-remote && mvn package
 # Deploy the guacamole webapp
 RUN mkdir -p /var/lib/tomcat8/.guacamole/extensions
 
-ADD guacamole.properties /opt/
+ADD conf/guacamole.properties /opt/
 #RUN ln -s /opt/guacamole.properties /usr/share/tomcat8/.guacamole/
 
 RUN cp ~/massive-guacamole-remote/target/massive-guacamole-remote-*jar /var/lib/tomcat8/.guacamole/extensions
@@ -53,7 +53,7 @@ RUN chown -R tomcat8:tomcat8 /var/lib/tomcat8/webapps/guacamole
 
 # Deploy strudel web
 # ADD strudel-web.properties /usr/share/tomcat8/strudel-web.properties
-ADD strudel-web.properties /opt/
+ADD conf/strudel-web.properties /opt/
 RUN ln -s /opt/strudel-web.properties ~tomcat8
 RUN mv ~/jobcontrol/target/strudel-web.war /var/lib/tomcat8/webapps/
 
