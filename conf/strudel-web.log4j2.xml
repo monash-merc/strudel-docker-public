@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="info" name="StrudelWeb" packages="">
+    <Appenders>
+        <Syslog name="RFC5424" format="RFC5424" host="118.138.245.172" port="10514"
+            protocol="TCP" appName="" mdcId="mdc" includeMDC="true"
+            facility="LOCAL0" enterpriseNumber="" newLine="true"
+            messageId="" id="">
+        </Syslog>
+    </Appenders>
+    <Loggers>
+        <Logger name="access_logger" level="info" />
+        <Root level="error">
+            <AppenderRef ref="RFC5424"/>
+        </Root>
+    </Loggers>
+</Configuration>
