@@ -3,6 +3,7 @@
 This page contains the instruction to build Strudel Web application using this repository.
 
 ## Pre-requisite
+- HAProxy server (see HAPROXY.md)
 - A server running Ubuntu 18.04 and Docker
 - A configured `strudel-web.properties`. An example of the file is provided under `conf/strudel-web.properties.example`.
 
