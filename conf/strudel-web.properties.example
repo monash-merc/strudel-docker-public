@@ -1,0 +1,22 @@
+allow-invalid-ssl-cert = true
+
+ssh-cert-backend-name0 = Example Backend
+ssh-cert-backend-oauth-authorization-endpoint0 = https://www.example.com/oauth/authorize
+ssh-cert-backend-oauth-token-endpoint0 = https://www.example.com/oauth/token
+ssh-cert-backend-oauth-client-id0 = Strudel Web
+ssh-cert-backend-oauth-client-secret0 = r4Nd0Mp455w0|2h3r3
+ssh-cert-backend-ssh-api-endpoint0 = https://www.example.com/api/v1/sign_key
+
+system-configuration-name0 = Example Site
+system-configuration-json-url0 = https://www.example.com/m2cvl_flavours_20150417.json
+system-configuration-auth-backends0 = Example Backend
+
+oauth-redirect = https://www.example.com/strudel-web/api/oauth/callback
+
+smtp-host = smtp.example.com
+#smtp-port = 25
+feedback-from-address = noreply@example.com
+feedback-to-address = help@massive.org.au
+feedback-email-subject = ${username} - Feedback for Strudel Web
+
+base-url = https://www.example.com/
