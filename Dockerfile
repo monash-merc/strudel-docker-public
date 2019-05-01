@@ -16,20 +16,18 @@ RUN npm -g install bower
 RUN echo '{ "allow_root": true }' > ~/.bowerrc
 
 # Add SSH deployment key (not required when github repo is made public)
-RUN mkdir ~/.ssh
-ADD id_rsa /root/.ssh/id_rsa
-ADD id_rsa.pub /root/.ssh/id_rsa.pub
-RUN chmod 700 ~/.ssh
-RUN chmod 600 ~/.ssh/id_rsa*
+#RUN mkdir ~/.ssh
+#ADD id_rsa /root/.ssh/id_rsa
+#ADD id_rsa.pub /root/.ssh/id_rsa.pub
+#RUN chmod 700 ~/.ssh
+#RUN chmod 600 ~/.ssh/id_rsa*
 
 # Clone and build requried java packages
+RUN mkdir -p ~/.ssh
 RUN ssh-keyscan github.com >> ~/.ssh/known_hosts
-RUN git clone git@github.com:monash-merc/jobcontrol.git ~/jobcontrol
+RUN git clone https://github.com/monash-merc/jobcontrol.git ~/jobcontrol
 ADD guacamole-client-1.0.0.tar.gz /root/
 RUN git clone https://github.com/monash-merc/massive-guacamole-remote-guac1.git ~/massive-guacamole-remote
-#ADD massive-guacamole-remote.tar /root/
-
-#RUN git clone git@github.com:jasonrig/massive-guacamole-remote.git ~/massive-guacamole-remote
 
 RUN cd ~/jobcontrol && mvn package
 RUN cd ~/guacamole-client-1.0.0/ && mvn package
@@ -39,7 +37,6 @@ RUN cd ~/massive-guacamole-remote && mvn package
 RUN mkdir -p /var/lib/tomcat8/.guacamole/extensions
 
 ADD conf/guacamole.properties /opt/
-#RUN ln -s /opt/guacamole.properties /usr/share/tomcat8/.guacamole/
 
 RUN cp ~/massive-guacamole-remote/target/massive-guacamole-remote-*jar /var/lib/tomcat8/.guacamole/extensions
 RUN cp ~/massive-guacamole-remote/target/massive-guacamole-remote-*.jar /var/lib/tomcat8/lib/
@@ -52,7 +49,6 @@ ADD http://central.maven.org/maven2/com/google/code/gson/gson/2.4/gson-2.4.jar /
 RUN chown -R tomcat8:tomcat8 /var/lib/tomcat8/webapps/guacamole
 
 # Deploy strudel web
-# ADD strudel-web.properties /usr/share/tomcat8/strudel-web.properties
 ADD conf/strudel-web.properties /opt/
 RUN ln -s /opt/strudel-web.properties ~tomcat8
 RUN mv ~/jobcontrol/target/strudel-web.war /var/lib/tomcat8/webapps/
