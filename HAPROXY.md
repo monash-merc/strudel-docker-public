@@ -41,7 +41,7 @@ frontend strudel_web_frontend_https
 backend strudel_web_backend
         balance roundrobin
         cookie SERVERID insert indirect nocache
-        server www-0 12.34.56:443 weight 1 check ssl verify none check cookie www-0
+        server www-0 12.34.56.78:443 weight 1 check ssl verify none check cookie www-0
 ``` 
 
 4. Restart haproxy: `systemctl restart haproxy`
