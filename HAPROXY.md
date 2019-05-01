@@ -21,9 +21,9 @@ This page contains the instruction to build HAProxy Web server for use with Stru
 (Your Intermediate certificate) 
 -----END CERTIFICATE----- 
 ```
-Put this file in `/etc/ssl/private` directory.
+Put this file in `/etc/ssl/private` directory.  
 2. Create `/etc/haproxy/crtlist.txt` with the path to the PEM file, for example:
-`/etc/ssl/private/certificate.pem`
+`/etc/ssl/private/certificate.pem` . 
 3. Configure `/etc/haproxy/haproxy.cfg` with the frontends and backends pointing to the Strudel Web instance, for example::
 ```
 frontend strudel_web_frontend_http
@@ -40,7 +40,7 @@ backend strudel_web_backend
         balance roundrobin
         cookie SERVERID insert indirect nocache
         server www-0 12.34.56:443 weight 1 check ssl verify none check cookie www-0
-```
+``` . 
 4. Restart haproxy: `systemctl restart haproxy`
         
 
