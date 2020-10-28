@@ -45,7 +45,7 @@ RUN mv ~/guacamole-client-1.0.0/guacamole/target/guacamole*.war /var/lib/tomcat8
 RUN mkdir /var/lib/tomcat8/webapps/guacamole/
 RUN cd /var/lib/tomcat8/webapps/guacamole/ && unzip ../guacamole.war
 
-ADD http://central.maven.org/maven2/com/google/code/gson/gson/2.4/gson-2.4.jar /var/lib/tomcat8/webapps/guacamole/WEB-INF/lib/gson-2.4.jar
+ADD https://repo1.maven.org/maven2/com/google/code/gson/gson/2.4/gson-2.4.jar /var/lib/tomcat8/webapps/guacamole/WEB-INF/lib/gson-2.4.jar
 RUN chown -R tomcat8:tomcat8 /var/lib/tomcat8/webapps/guacamole
 
 # Deploy strudel web
